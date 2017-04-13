@@ -95,7 +95,8 @@
             $("#ball1").click(function () {
                 Pokemon1.attack(Pokemon2);
                 if (Pokemon2.hp < 0) {
-                    alert(Pokemon1.name + "勝利");
+                    alertify.alert(Pokemon1.name + "勝利");
+                    stop();
                 } else {
                     Render();
                 }
@@ -104,7 +105,8 @@
             function ball2() {
                 Pokemon2.attack(Pokemon1);
                 if (Pokemon1.hp < 0) {
-                    alert(Pokemon2.name + "勝利");
+                    alertify.alert(Pokemon2.name + "勝利");
+                    stop();
                 } else {
                     Render();
                 }
