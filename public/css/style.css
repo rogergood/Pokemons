@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+header,
+nav,
+h1,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    border: 2px dotted black;
+    overflow: auto;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: gray;
+}
+
+.description {
+    background-color: greenyellow;
+    width: calc(100%/2 - 6px);
+    float: left;
+    padding: 5px;
+    border: 2px dotted black;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+.thumbnail-1 {
+    width: calc((100%/3)*2 - 6px);
+    float: left;
+    padding: 5px;
+    margin: 3px;
+    text-align: center;
+}
+
+.thumbnail-2 {
+    width: calc((100%/3)*1 - 6px);
+    float: left;
+    padding: 5px;
+    margin: 3px atuo;
+    margin-top: 80px;
+}
+
+.blockarea-1 {
+    width: calc((100%/3)*2 - 6px);
+    float: left;
+    margin-left:10px;
+}
+
+.blockarea-2 {
+    width: calc((100%/3)*1 - 6px);
+    float: left;
+}

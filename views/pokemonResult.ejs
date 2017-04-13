@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>進擊的Pokemon</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.core.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.default.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="description">
+            <h2>
+                <div class="blockarea-1">第1隻Pokemon的編號：</div>
+                <div class="blockarea-2" id="no1">
+                    <%=pokemonResult.nationalNo1 %>
+                </div>
+                <div class="blockarea-1">第1隻Pokemon的名字：</div>
+                <div class="blockarea-2" id="name1">
+                    <%=pokemonResult.name1 %>
+                </div>
+                <div class="blockarea-1">第1隻Pokemon的HP：</div>
+                <div class="blockarea-2" id="hp1">
+                    <%=pokemonResult.HP1 %>
+                </div>
+                <div class="thumbnail-1"><img src="/Pokemons/<%=pokemonResult.img1%>" alt=""></div>
+                <div class="thumbnail-2"><img id="ball1" src="/Pokemons/pokemon ball.png" width="80px" alt=""></div>
+                <div class="blockarea-1">第1隻Pokemon的剩餘HP：</div>
+                <div class="blockarea-2" id="remainHp1"><input type="text" name="remainHp1">
+                </div>
+            </h2>
+        </div>
+        <div class="description">
+            <h2>
+                <div class="blockarea-1">第2隻Pokemon的編號：</div>
+                <div class="blockarea-2" id="no2">
+                    <%=pokemonResult.nationalNo2 %>
+                </div>
+                <div class="blockarea-1">第2隻Pokemon的名字：</div>
+                <div class="blockarea-2" id="name2">
+                    <%=pokemonResult.name2 %>
+                </div>
+                <div class="blockarea-1">第2隻Pokemon的HP：</div>
+                <div class="blockarea-2" id="hp2">
+                    <%=pokemonResult.HP2 %>
+                </div>
+                <div class="thumbnail-1"><img src="/Pokemons/<%=pokemonResult.img2%>" alt=""></div>
+                <div class="thumbnail-2"><img id="ball2" src="/Pokemons/pokemon ball.png" width="80px" alt=""></div>
+                <div class="blockarea-1">第2隻Pokemon的剩餘HP：</div>
+                <div class="blockarea-2" id="remainHp2"><input type="text" name="remainHp2">
+                </div>
+            </h2>
+        </div>
+        <h2>
+            <center>第2隻Pokemon將每0.1秒攻擊一次，請加速攻擊!!
+                <BR>
+                <button onclick="history.go(-1)">再玩一次</button>
+            </center>
+        </h2>
+
+    </div>
+
+    <script>
+        function Pokemon(hp, name, remainHp) {
+            this.hp = hp;
+            this.name = name;
+            this.remainHp = remainHp;
+            this.attack = function (other) {
+                other.hp -= 20;
+            };
+        }
+        var Pokemon1 = new Pokemon(
+            $("#hp1").text(),
+            $("#name1").text(),
+            $("#remainHp1").text($("#hp1").text())
+        );
+        var Pokemon2 = new Pokemon(
+            $("#hp2").text(),
+            $("#name2").text(),
+            $("#remainHp2").text($("#hp1").text())
+        );
+        $(function () {
+
+            function Render() {
+                $("#remainHp1").text(Pokemon1.hp);
+                $("#remainHp2").text(Pokemon2.hp);
+            }
+            Render()
+            $("#ball1").click(function () {
+                Pokemon1.attack(Pokemon2);
+                if (Pokemon2.hp < 0) {
+                    alert(Pokemon1.name + "勝利");
+                } else {
+                    Render();
+                }
+            });
+
+            function ball2() {
+                Pokemon2.attack(Pokemon1);
+                if (Pokemon1.hp < 0) {
+                    alert(Pokemon2.name + "勝利");
+                } else {
+                    Render();
+                }
+            };
+
+            var intervalID;
+            function autoRun() {
+                intervalID = window.setInterval(ball2, 100);
+            }
+            function stop() {
+                window.clearInterval(intervalID);
+            }
+            if (confirm(" 準備好了嗎 ")) {
+                if (Pokemon1.hp > 19) {
+                    autoRun();
+                } else {
+                    stop();
+                }
+            } else {
+            }
+        });
+    </script>
+</body>
+
+</html>
