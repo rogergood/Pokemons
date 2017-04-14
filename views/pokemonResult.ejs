@@ -93,18 +93,24 @@
             }
             Render()
             $("#ball1").click(function () {
-                Pokemon1.attack(Pokemon2);
-                if (Pokemon2.hp < 0) {
-                    alertify.alert(Pokemon1.name + "勝利");
-                    stop();
+                if (Pokemon2.hp > 0 && Pokemon1.hp > 3) {
+                    Pokemon1.attack(Pokemon2);
+                    if (Pokemon2.hp < 19) {
+                        $("#remainHp2").text(0);
+                        alertify.alert(Pokemon1.name + "勝利");
+                        stop();
+                    } else {
+                        Render();
+                    }
                 } else {
-                    Render();
-                }
+                    alertify.alert("遊戲結束了，別再攻擊了")
+                };
             });
 
             function ball2() {
                 Pokemon2.attack(Pokemon1);
-                if (Pokemon1.hp < 0) {
+                if (Pokemon1.hp < 19) {
+                    $("#remainHp1").text(0);
                     alertify.alert(Pokemon2.name + "勝利");
                     stop();
                 } else {
